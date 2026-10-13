@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: somnia-token-analytics
+description: Balances, holders, supply and daily volume for Somnia's main tokens
+contracts:
+  - name: ERC20
+    events:
+      - event: "Transfer(address indexed from, address indexed to, uint256 value)"
+  - name: WSOMI
+    events:
+      - event: "Transfer(address indexed src, address indexed dst, uint256 wad)"
+      - event: "Deposit(address indexed dst, uint256 wad)"
+      - event: "Withdrawal(address indexed src, uint256 wad)"
+chains:
+  - id: 5031 # Somnia Mainnet
+    start_block: 38518130 # WSOMI deployment, the earliest of these tokens
+    contracts:
+      - name: WSOMI
+        address: "0x046EDe9564A72571df6F5e44d0405360c0f4dCab"
+      - name: ERC20
+        start_block: 78145471 # USDC deployment, the earliest ERC20 here
+        address:
+          - "0x28BEc7E30E6faee657a03e19Bf1128AaD7632A00" # USDC
+          - "0x67B302E35Aef5EEE8c32D934F5856869EF428330" # USDT
+          - "0x936Ab8C674bcb567CD5dEB85D8A216494704E9D8" # WETH
+          - "0xC5098b3cA516784323872F17235fa074E167D3D2" # WBTC
+          - "0x00000022dA000002656c64D9eA6011ea952D008A" # USDso

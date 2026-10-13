@@ -1,0 +1,24 @@
+type Token {
+  id: ID! # token address
+  symbol: String!
+  decimals: Int!
+  totalSupply: BigInt!
+  holderCount: Int!
+  transferCount: Int!
+  volume: BigInt!
+}
+
+type AccountBalance {
+  id: ID! # token address and account, joined with "-"
+  token: Token!
+  account: String! @index
+  balance: BigInt!
+}
+
+type DailyVolume {
+  id: ID! # token address and day number, joined with "-"
+  token: Token!
+  dayStartTimestamp: Int!
+  transferCount: Int!
+  volume: BigInt!
+}
